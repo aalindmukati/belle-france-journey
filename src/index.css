@@ -2,95 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 37 45% 93%;
+    --foreground: 220 58% 10%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 37 45% 93%;
+    --card-foreground: 220 58% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 58% 10%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 220 58% 10%;
+    --primary-foreground: 37 45% 93%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 37 30% 87%;
+    --secondary-foreground: 220 58% 10%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 37 20% 88%;
+    --muted-foreground: 220 20% 40%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 52% 54%;
+    --accent-foreground: 220 58% 10%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 350 84% 42%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --french-red: 350 84% 42%;
+    --french-blue: 220 58% 10%;
+    --french-gold: 45 52% 54%;
+    --cream: 37 45% 93%;
+    --cream-light: 37 50% 96%;
 
-    --radius: 0.5rem;
+    --border: 37 20% 82%;
+    --input: 37 20% 82%;
+    --ring: 45 52% 54%;
 
-    --sidebar-background: 0 0% 98%;
+    --radius: 0.375rem;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 220 58% 10%;
+    --sidebar-foreground: 37 45% 93%;
+    --sidebar-primary: 45 52% 54%;
+    --sidebar-primary-foreground: 220 58% 10%;
+    --sidebar-accent: 220 50% 16%;
+    --sidebar-accent-foreground: 37 45% 93%;
+    --sidebar-border: 220 40% 20%;
+    --sidebar-ring: 45 52% 54%;
   }
 }
 
@@ -101,5 +58,133 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Source Serif 4', 'Georgia', serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', 'Georgia', serif;
+  }
+}
+
+@layer components {
+  .french-word {
+    @apply italic;
+    color: hsl(var(--french-gold));
+  }
+
+  .tricolor-divider {
+    @apply flex h-1 w-full max-w-xs mx-auto my-8;
+  }
+
+  .tricolor-divider span:nth-child(1) {
+    @apply flex-1;
+    background: hsl(var(--french-blue));
+  }
+  .tricolor-divider span:nth-child(2) {
+    @apply flex-1;
+    background: hsl(0 0% 100%);
+  }
+  .tricolor-divider span:nth-child(3) {
+    @apply flex-1;
+    background: hsl(var(--french-red));
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      hsla(220, 58%, 10%, 0.4) 0%,
+      hsla(220, 58%, 10%, 0.6) 50%,
+      hsla(220, 58%, 10%, 0.85) 100%
+    );
+  }
+
+  .section-navy {
+    background: hsl(var(--french-blue));
+    color: hsl(var(--cream));
+  }
+
+  .section-cream {
+    background: hsl(var(--cream));
+    color: hsl(var(--french-blue));
+  }
+
+  .section-cream-light {
+    background: hsl(var(--cream-light));
+    color: hsl(var(--french-blue));
+  }
+
+  .gold-quote {
+    @apply relative pl-12;
+  }
+
+  .gold-quote::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    line-height: 1;
+    color: hsl(var(--french-gold));
+    position: absolute;
+    left: 0;
+    top: -0.5rem;
+  }
+
+  .image-card {
+    @apply relative overflow-hidden rounded-lg cursor-pointer;
+  }
+
+  .image-card img {
+    @apply w-full h-full object-cover transition-transform duration-700;
+  }
+
+  .image-card:hover img {
+    transform: scale(1.08);
+  }
+
+  .image-card .image-card-overlay {
+    @apply absolute inset-0 flex items-end p-6 transition-opacity duration-500;
+    background: linear-gradient(to top, hsla(220, 58%, 10%, 0.8) 0%, transparent 60%);
+  }
+
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .did-you-know {
+    @apply border-l-4 p-6 my-8 rounded-r-lg;
+    border-color: hsl(var(--french-gold));
+    background: hsla(45, 52%, 54%, 0.1);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Playfair Display', 'Georgia', serif;
+  }
+
+  .font-body {
+    font-family: 'Source Serif 4', 'Georgia', serif;
+  }
+
+  .text-gold {
+    color: hsl(var(--french-gold));
+  }
+
+  .bg-navy {
+    background: hsl(var(--french-blue));
+  }
+
+  .text-cream {
+    color: hsl(var(--cream));
+  }
+
+  .bg-cream {
+    background: hsl(var(--cream));
   }
 }
