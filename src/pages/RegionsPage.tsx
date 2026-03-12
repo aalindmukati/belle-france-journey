@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -20,9 +22,11 @@ interface Attraction {
   name: string;
   image: string;
   description: string;
+  badge: string;
 }
 
 interface Region {
+  id: string;
   name: string;
   frenchName: string;
   bannerImage: string;
@@ -33,6 +37,7 @@ interface Region {
 
 const regions: Region[] = [
   {
+    id: "ile-de-france",
     name: "Île-de-France",
     frenchName: "Île-de-France",
     bannerImage: ileImg,
@@ -44,12 +49,13 @@ const regions: Region[] = [
     ],
     didYouKnow: "The Eiffel Tower was originally intended to be dismantled after 20 years but was saved because it served as a radio transmission tower.",
     attractions: [
-      { name: "The Eiffel Tower", image: eiffelImg, description: "Built in 1889 by Gustave Eiffel for the World's Fair, this iron lattice tower stands 330 meters tall and is one of the most visited monuments in the world." },
-      { name: "The Louvre Museum", image: louvreImg, description: "The world's largest art museum, home to over 35,000 works including the Mona Lisa and the Venus de Milo." },
-      { name: "Palace of Versailles", image: versaillesImg, description: "A royal château of extraordinary opulence built under King Louis XIV, featuring over 2,000 rooms, the Hall of Mirrors, and vast manicured gardens." },
+      { name: "The Eiffel Tower", image: eiffelImg, description: "Built in 1889 by Gustave Eiffel for the World's Fair, this iron lattice tower stands 330 meters tall and is one of the most visited monuments in the world.", badge: "Most Visited" },
+      { name: "The Louvre Museum", image: louvreImg, description: "The world's largest art museum, home to over 35,000 works including the Mona Lisa and the Venus de Milo.", badge: "Must Visit" },
+      { name: "Palace of Versailles", image: versaillesImg, description: "A royal château of extraordinary opulence built under King Louis XIV, featuring over 2,000 rooms, the Hall of Mirrors, and vast manicured gardens.", badge: "UNESCO Site" },
     ],
   },
   {
+    id: "provence",
     name: "Provence",
     frenchName: "Provence",
     bannerImage: provenceImg,
@@ -61,12 +67,13 @@ const regions: Region[] = [
     ],
     didYouKnow: "Provence produces around 80% of the world's lavender essential oil.",
     attractions: [
-      { name: "Lavender Fields of Valensole", image: lavenderImg, description: "Every summer, the plateau of Valensole transforms into a breathtaking sea of purple lavender, one of France's most iconic natural landscapes." },
-      { name: "Palais des Papes, Avignon", image: palaisImg, description: "A massive Gothic palace that served as the seat of the Catholic Church during the 14th century, now a UNESCO World Heritage Site." },
-      { name: "Calanques National Park", image: calanquesImg, description: "Stunning limestone cliffs dropping into turquoise Mediterranean waters, perfect for hiking and boat trips along the coast." },
+      { name: "Lavender Fields of Valensole", image: lavenderImg, description: "Every summer, the plateau of Valensole transforms into a breathtaking sea of purple lavender, one of France's most iconic natural landscapes.", badge: "Hidden Gem" },
+      { name: "Palais des Papes, Avignon", image: palaisImg, description: "A massive Gothic palace that served as the seat of the Catholic Church during the 14th century, now a UNESCO World Heritage Site.", badge: "UNESCO Site" },
+      { name: "Calanques National Park", image: calanquesImg, description: "Stunning limestone cliffs dropping into turquoise Mediterranean waters, perfect for hiking and boat trips along the coast.", badge: "Must Visit" },
     ],
   },
   {
+    id: "brittany",
     name: "Brittany",
     frenchName: "Bretagne",
     bannerImage: brittanyImg,
@@ -78,71 +85,83 @@ const regions: Region[] = [
     ],
     didYouKnow: "Mont Saint-Michel receives over 3 million visitors per year, making it one of the most visited sites in all of France.",
     attractions: [
-      { name: "Mont Saint-Michel", image: montImg, description: "A breathtaking medieval abbey perched on a tidal island, accessible by a causeway that floods at high tide. One of France's most recognizable landmarks." },
-      { name: "Saint-Malo", image: saintMaloImg, description: "A historic walled port city with ramparts you can walk along, golden sandy beaches, and a rich history of seafaring and privateers." },
-      { name: "Carnac Standing Stones", image: carnacImg, description: "One of the world's most remarkable prehistoric sites, featuring thousands of ancient standing stones arranged in long rows dating back over 6,000 years." },
+      { name: "Mont Saint-Michel", image: montImg, description: "A breathtaking medieval abbey perched on a tidal island, accessible by a causeway that floods at high tide. One of France's most recognizable landmarks.", badge: "UNESCO Site" },
+      { name: "Saint-Malo", image: saintMaloImg, description: "A historic walled port city with ramparts you can walk along, golden sandy beaches, and a rich history of seafaring and privateers.", badge: "Hidden Gem" },
+      { name: "Carnac Standing Stones", image: carnacImg, description: "One of the world's most remarkable prehistoric sites, featuring thousands of ancient standing stones arranged in long rows dating back over 6,000 years.", badge: "Must Visit" },
     ],
   },
 ];
 
-const RegionsPage = () => (
-  <Layout>
-    <PageHeader title="Regions of France" subtitle="From the boulevards of Paris to the wild coasts of Brittany, discover France's most captivating regions." />
+const RegionsPage = () => {
+  const location = useLocation();
 
-    {regions.map((region, idx) => (
-      <div key={region.name}>
-        <section className={idx % 2 === 0 ? "section-cream py-16" : "section-cream-light py-16"}>
-          <div className="container mx-auto px-6 max-w-5xl">
-            {/* Banner */}
-            <ScrollReveal>
-              <div className="image-card aspect-[21/9] rounded-xl overflow-hidden shadow-lg mb-10">
-                <img src={region.bannerImage} alt={region.name} className="w-full h-full object-cover" loading="lazy" />
-                <div className="image-card-overlay">
-                  <div>
-                    <h2 className="font-display text-3xl md:text-4xl font-bold text-cream">{region.name}</h2>
-                    <p className="french-word text-sm mt-1">{region.frenchName}</p>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
+  useEffect(() => {
+    if (location.hash) {
+      const el = document.getElementById(location.hash.slice(1));
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 200);
+    }
+  }, [location.hash]);
 
-            {/* Content */}
-            <ScrollReveal>
-              <div className="max-w-3xl mx-auto space-y-4">
-                {region.paragraphs.map((p, i) => (
-                  <p key={i} className="font-body text-base leading-relaxed text-foreground/90">{p}</p>
-                ))}
-              </div>
-            </ScrollReveal>
+  return (
+    <Layout>
+      <PageHeader title="Regions of France" subtitle="From the boulevards of Paris to the wild coasts of Brittany, discover France's most captivating regions." />
 
-            {/* Did You Know */}
-            <ScrollReveal>
-              <div className="did-you-know max-w-3xl mx-auto">
-                <p className="font-display text-lg font-semibold mb-2">Did You Know?</p>
-                <p className="font-body text-base text-foreground/80">{region.didYouKnow}</p>
-              </div>
-            </ScrollReveal>
-
-            {/* Attractions */}
-            <ScrollReveal>
-              <div className="grid md:grid-cols-3 gap-6 mt-12">
-                {region.attractions.map((a) => (
-                  <div key={a.name} className="image-card aspect-[3/4] rounded-lg shadow-md">
-                    <img src={a.image} alt={a.name} className="w-full h-full object-cover" loading="lazy" />
-                    <div className="image-card-overlay flex-col justify-end">
-                      <h3 className="font-display text-lg font-bold text-cream mb-1">{a.name}</h3>
-                      <p className="font-body text-xs text-cream/80 leading-relaxed">{a.description}</p>
+      {regions.map((region, idx) => (
+        <div key={region.name} id={region.id}>
+          <section className={`${idx % 2 === 0 ? "section-cream" : "section-cream-light"} noise-texture py-16`}>
+            <div className="container mx-auto px-6 max-w-5xl relative z-10">
+              {/* Banner */}
+              <ScrollReveal>
+                <div className="image-card gold-border-card aspect-[21/9] rounded-xl overflow-hidden shadow-lg mb-10">
+                  <img src={region.bannerImage} alt={region.name} className="w-full h-full object-cover" loading="lazy" />
+                  <div className="image-card-overlay">
+                    <div>
+                      <h2 className="font-display text-3xl md:text-4xl font-bold text-cream">{region.name}</h2>
+                      <p className="french-word text-sm mt-1">{region.frenchName}</p>
                     </div>
                   </div>
-                ))}
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-        <TricolorDivider />
-      </div>
-    ))}
-  </Layout>
-);
+                </div>
+              </ScrollReveal>
+
+              {/* Content */}
+              <ScrollReveal>
+                <div className="max-w-3xl mx-auto space-y-4">
+                  {region.paragraphs.map((p, i) => (
+                    <p key={i} className={`font-body text-base leading-relaxed text-foreground/90 ${i === 0 ? "drop-cap" : ""}`}>{p}</p>
+                  ))}
+                </div>
+              </ScrollReveal>
+
+              {/* Did You Know */}
+              <ScrollReveal>
+                <div className="did-you-know pinned-note max-w-3xl mx-auto">
+                  <p className="font-display text-lg font-semibold mb-2">📌 Did You Know?</p>
+                  <p className="font-body text-base text-foreground/80">{region.didYouKnow}</p>
+                </div>
+              </ScrollReveal>
+
+              {/* Attractions */}
+              <ScrollReveal>
+                <div className="grid md:grid-cols-3 gap-6 mt-12">
+                  {region.attractions.map((a) => (
+                    <div key={a.name} className="image-card gold-border-card aspect-[3/4] rounded-lg shadow-md">
+                      <span className="ribbon-badge">{a.badge}</span>
+                      <img src={a.image} alt={a.name} className="w-full h-full object-cover" loading="lazy" />
+                      <div className="image-card-overlay flex-col justify-end">
+                        <h3 className="font-display text-lg font-bold text-cream mb-1">{a.name}</h3>
+                        <p className="font-body text-xs text-cream/80 leading-relaxed">{a.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </ScrollReveal>
+            </div>
+          </section>
+          <TricolorDivider />
+        </div>
+      ))}
+    </Layout>
+  );
+};
 
 export default RegionsPage;

@@ -56,6 +56,10 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Source Serif 4', 'Georgia', serif;
@@ -67,6 +71,30 @@
 }
 
 @layer components {
+  /* Tricolor stripe at very top */
+  .tricolor-stripe {
+    @apply fixed top-0 left-0 right-0 z-[60] flex h-1;
+  }
+  .tricolor-stripe span:nth-child(1) {
+    @apply flex-1;
+    background: hsl(var(--french-blue));
+  }
+  .tricolor-stripe span:nth-child(2) {
+    @apply flex-1;
+    background: hsl(0 0% 100%);
+  }
+  .tricolor-stripe span:nth-child(3) {
+    @apply flex-1;
+    background: hsl(var(--french-red));
+  }
+
+  /* Scroll progress bar */
+  .scroll-progress {
+    @apply fixed top-1 left-0 h-[3px] z-[59];
+    background: hsl(var(--french-gold));
+    transition: width 0.1s linear;
+  }
+
   .french-word {
     @apply italic;
     color: hsl(var(--french-gold));
@@ -92,10 +120,35 @@
   .hero-overlay {
     background: linear-gradient(
       to bottom,
-      hsla(220, 58%, 10%, 0.4) 0%,
-      hsla(220, 58%, 10%, 0.6) 50%,
+      hsla(220, 58%, 10%, 0.3) 0%,
+      hsla(220, 58%, 10%, 0.5) 40%,
       hsla(220, 58%, 10%, 0.85) 100%
     );
+  }
+
+  /* Ken Burns effect */
+  @keyframes ken-burns {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.12); }
+  }
+  .ken-burns {
+    animation: ken-burns 20s ease-in-out infinite alternate;
+  }
+
+  /* Noise texture overlay */
+  .noise-texture {
+    position: relative;
+  }
+  .noise-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
   }
 
   .section-navy {
@@ -128,6 +181,7 @@
     top: -0.5rem;
   }
 
+  /* Card with gold border animation on hover */
   .image-card {
     @apply relative overflow-hidden rounded-lg cursor-pointer;
   }
@@ -145,6 +199,36 @@
     background: linear-gradient(to top, hsla(220, 58%, 10%, 0.8) 0%, transparent 60%);
   }
 
+  /* Gold border draw animation */
+  .gold-border-card {
+    @apply relative;
+  }
+  .gold-border-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid hsl(var(--french-gold));
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    clip-path: inset(0 100% 100% 0);
+  }
+  .gold-border-card:hover::after {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transition: opacity 0.3s ease, clip-path 0.6s ease;
+  }
+
+  /* Ribbon badge */
+  .ribbon-badge {
+    @apply absolute top-0 left-0 z-10 px-3 py-1 text-xs font-body font-semibold;
+    background: hsl(var(--french-gold));
+    color: hsl(var(--french-blue));
+    clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
+    padding-right: 1.2rem;
+  }
+
   .scroll-reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -160,6 +244,127 @@
     @apply border-l-4 p-6 my-8 rounded-r-lg;
     border-color: hsl(var(--french-gold));
     background: hsla(45, 52%, 54%, 0.1);
+  }
+
+  /* Pinned note style for did-you-know on regions/landmarks */
+  .pinned-note {
+    transform: rotate(-1.5deg);
+    box-shadow: 4px 4px 12px hsla(220, 58%, 10%, 0.15);
+    transition: transform 0.3s ease;
+  }
+  .pinned-note:hover {
+    transform: rotate(0deg);
+  }
+
+  /* Drop cap */
+  .drop-cap::first-letter {
+    float: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    line-height: 0.8;
+    padding-right: 0.6rem;
+    padding-top: 0.15rem;
+    color: hsl(var(--french-gold));
+    font-weight: 700;
+  }
+
+  /* Heading underline animation */
+  .heading-reveal {
+    @apply relative inline-block;
+  }
+  .heading-reveal::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: hsl(var(--french-gold));
+    transition: width 0.8s ease-out;
+  }
+  .heading-reveal.revealed::after {
+    width: 100%;
+  }
+
+  /* Ticker */
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-track {
+    display: flex;
+    animation: ticker-scroll 30s linear infinite;
+    width: max-content;
+  }
+
+  /* Back to top button */
+  .back-to-top {
+    @apply fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300;
+    background: hsl(var(--french-gold));
+    color: hsl(var(--french-blue));
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .back-to-top:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px hsla(45, 52%, 54%, 0.4);
+  }
+
+  /* Timeline */
+  .timeline-line {
+    background: hsl(var(--french-gold));
+  }
+  .timeline-dot {
+    @apply w-4 h-4 rounded-full border-2 flex-shrink-0;
+    background: hsl(var(--french-gold));
+    border-color: hsl(var(--french-blue));
+  }
+
+  /* Lightbox */
+  .lightbox-overlay {
+    @apply fixed inset-0 z-[100] flex items-center justify-center;
+    background: hsla(220, 58%, 10%, 0.92);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Masonry grid */
+  .masonry-grid {
+    columns: 3;
+    column-gap: 1rem;
+  }
+  .masonry-grid > * {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 768px) {
+    .masonry-grid {
+      columns: 2;
+    }
+  }
+  @media (max-width: 480px) {
+    .masonry-grid {
+      columns: 1;
+    }
+  }
+
+  /* Progress bar (skill) */
+  .skill-bar-track {
+    @apply w-full h-3 rounded-full;
+    background: hsl(var(--french-blue));
+  }
+  .skill-bar-fill {
+    @apply h-full rounded-full transition-all duration-1000 ease-out;
+    background: hsl(var(--french-gold));
+    width: 0;
+  }
+  .skill-bar-fill.animate {
+    /* width set via inline style */
   }
 }
 
