@@ -172,9 +172,11 @@ const RegionPin = ({
         position={[region.position[0], region.position[1] + 0.45, region.position[2] + 0.1]}
         center
         distanceFactor={8}
-        style={{ pointerEvents: "none" }}
       >
-        <div className="font-display text-sm font-bold text-cream whitespace-nowrap px-2 py-0.5 rounded bg-primary/70 backdrop-blur-sm">
+        <div
+          className="font-display text-sm font-bold text-cream whitespace-nowrap px-2 py-0.5 rounded bg-primary/70 backdrop-blur-sm cursor-pointer hover:bg-primary/90 transition-colors"
+          onClick={() => onClick()}
+        >
           {region.name}
         </div>
       </Html>
