@@ -16,6 +16,7 @@ const Footer = () => (
         {[
           { to: "/", label: "Home" },
           { to: "/regions", label: "Regions" },
+          { to: "/map", label: "Map" },
           { to: "/cuisine", label: "Cuisine" },
           { to: "/landmarks", label: "Landmarks" },
           { to: "/about", label: "About" },
