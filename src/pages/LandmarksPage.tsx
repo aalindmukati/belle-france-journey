@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import ScrollReveal from "@/components/ScrollReveal";
 import TricolorDivider from "@/components/TricolorDivider";
+import LandmarkTimeline from "@/components/LandmarkTimeline";
 
 import eiffelImg from "@/assets/eiffel-tower.jpg";
 import notreDameImg from "@/assets/notre-dame.jpg";
@@ -17,6 +18,7 @@ const landmarks = [
     image: eiffelImg,
     year: "1889",
     location: "Paris",
+    badge: "Most Visited",
     description: "Originally built as a temporary structure for the 1889 World's Fair, the Eiffel Tower has since become the enduring symbol of France. Standing 330 meters tall, it was the world's tallest man-made structure for 41 years. Today it welcomes nearly 7 million visitors annually and dazzles nightly with its sparkling light show.",
   },
   {
@@ -25,6 +27,7 @@ const landmarks = [
     image: notreDameImg,
     year: "1163–1345",
     location: "Paris",
+    badge: "UNESCO Site",
     description: "One of the finest examples of French Gothic architecture, Notre-Dame Cathedral stands on the Île de la Cité in the heart of Paris. Its iconic twin towers, flying buttresses, and stunning rose windows have inspired artists and writers for centuries. After the devastating 2019 fire, extensive restoration work is underway to restore it to its former glory.",
   },
   {
@@ -33,6 +36,7 @@ const landmarks = [
     image: montImg,
     year: "8th century",
     location: "Normandy / Brittany border",
+    badge: "UNESCO Site",
     description: "Rising dramatically from a tidal island off the Normandy coast, Mont Saint-Michel is one of France's most extraordinary sights. The medieval abbey at its peak was a major pilgrimage destination throughout the Middle Ages. Twice a day, the tides surround the island, creating the illusion that it floats on the sea.",
   },
   {
@@ -41,6 +45,7 @@ const landmarks = [
     image: versaillesImg,
     year: "1661–1710",
     location: "Versailles",
+    badge: "Must Visit",
     description: "The Palace of Versailles was the principal royal residence of France for over a century under kings Louis XIV, XV, and XVI. Its Hall of Mirrors — a 73-meter-long gallery lined with 357 mirrors — remains one of the most spectacular interiors in the world. The palace and its vast gardens are now a UNESCO World Heritage Site.",
   },
   {
@@ -49,6 +54,7 @@ const landmarks = [
     image: louvreImg,
     year: "12th century",
     location: "Paris",
+    badge: "Most Visited",
     description: "Originally a medieval fortress, the Louvre was transformed into a royal palace before opening as a public museum in 1793. Today it is the world's most visited museum, housing approximately 35,000 works of art across 73,000 square meters. Its modern glass pyramid entrance, designed by I.M. Pei, has become an iconic landmark in its own right.",
   },
   {
@@ -57,6 +63,7 @@ const landmarks = [
     image: arcImg,
     year: "1806–1836",
     location: "Paris",
+    badge: "Hidden Gem",
     description: "Commissioned by Napoleon Bonaparte to honor the soldiers of the French Revolutionary and Napoleonic Wars, the Arc de Triomphe stands at the center of the famous roundabout at the end of the Champs-Élysées. Beneath it lies the Tomb of the Unknown Soldier, with an eternal flame that has burned since 1921.",
   },
 ];
@@ -65,13 +72,14 @@ const LandmarksPage = () => (
   <Layout>
     <PageHeader title="Iconic Landmarks" subtitle="Timeless monuments that define the grandeur and history of France." />
 
-    <section className="section-cream py-16">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <section className="section-cream noise-texture py-16">
+      <div className="container mx-auto px-6 max-w-6xl relative z-10">
         <div className="grid md:grid-cols-2 gap-10">
           {landmarks.map((lm, i) => (
             <ScrollReveal key={lm.english} delay={i * 100}>
-              <div className="bg-background rounded-xl shadow-lg overflow-hidden">
-                <div className="image-card aspect-video">
+              <div className="bg-background rounded-xl shadow-lg overflow-hidden gold-border-card">
+                <div className="image-card aspect-video relative">
+                  <span className="ribbon-badge">{lm.badge}</span>
                   <img src={lm.image} alt={lm.english} className="w-full h-full object-cover" loading="lazy" />
                   <div className="image-card-overlay">
                     <div>
@@ -95,6 +103,11 @@ const LandmarksPage = () => (
         </div>
       </div>
     </section>
+
+    <TricolorDivider />
+
+    {/* Timeline */}
+    <LandmarkTimeline />
 
     <TricolorDivider />
   </Layout>
