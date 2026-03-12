@@ -1,6 +1,6 @@
-import { useRef, useState, useMemo, useCallback } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text, Html, Float, MeshTransmissionMaterial } from "@react-three/drei";
+import { useRef, useState, useMemo, useCallback, forwardRef } from "react";
+import { Canvas, useFrame, extend } from "@react-three/fiber";
+import { OrbitControls, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useNavigate } from "react-router-dom";
 
@@ -88,21 +88,22 @@ const FranceShape = () => {
   );
 };
 
-// Outline edges
+// Outline edges using Line2 approach
 const FranceOutline = () => {
-  const points = useMemo(() => {
-    return FRANCE_OUTLINE.map(([x, y]) => new THREE.Vector3(x, y, 0.25));
-  }, []);
+  const ref = useRef<THREE.Line>(null!);
 
   const lineGeometry = useMemo(() => {
-    return new THREE.BufferGeometry().setFromPoints(points);
-  }, [points]);
+    const points = FRANCE_OUTLINE.map(([x, y]) => new THREE.Vector3(x, y, 0.25));
+    const geo = new THREE.BufferGeometry().setFromPoints(points);
+    return geo;
+  }, []);
+
+  const lineMaterial = useMemo(() => {
+    return new THREE.LineBasicMaterial({ color: "#c9a84c", transparent: true, opacity: 0.7 });
+  }, []);
 
   return (
-    <line>
-      <bufferGeometry attach="geometry" {...lineGeometry} />
-      <lineBasicMaterial attach="material" color="#c9a84c" linewidth={2} transparent opacity={0.7} />
-    </line>
+    <primitive object={new THREE.Line(lineGeometry, lineMaterial)} />
   );
 };
 
@@ -166,19 +167,19 @@ const RegionPin = ({
       {/* Pulse ring */}
       <PulseRing position={region.position} color={region.color} active={isActive} />
 
-      {/* Label */}
-      <Text
-        position={[region.position[0], region.position[1] + 0.42, region.position[2] + 0.1]}
-        fontSize={0.18}
-        color="#f5f0e8"
-        font="/fonts/playfair.woff"
-        anchorX="center"
-        anchorY="bottom"
-        outlineWidth={0.02}
-        outlineColor="#0a1628"
+      {/* Label using Html from drei */}
+      <Html
+        position={[region.position[0], region.position[1] + 0.45, region.position[2] + 0.1]}
+        center
+        distanceFactor={8}
       >
-        {region.name}
-      </Text>
+        <div
+          className="font-display text-sm font-bold text-cream whitespace-nowrap px-2 py-0.5 rounded bg-primary/70 backdrop-blur-sm cursor-pointer hover:bg-primary/90 transition-colors"
+          onClick={() => onClick()}
+        >
+          {region.name}
+        </div>
+      </Html>
     </group>
   );
 };
@@ -195,7 +196,7 @@ const PulseRing = ({ position, color, active }: { position: [number, number, num
   });
 
   return (
-    <mesh ref={ref} position={position} rotation={[0, 0, 0]}>
+    <mesh ref={ref} position={position}>
       <ringGeometry args={[0.2, 0.25, 32]} />
       <meshBasicMaterial color={color} transparent opacity={0.2} side={THREE.DoubleSide} />
     </mesh>
@@ -266,7 +267,7 @@ const SceneContent = ({
   return (
     <>
       <ambientLight intensity={0.4} />
-      <directionalLight position={[5, 8, 5]} intensity={1.2} castShadow shadow-mapSize-width={1024} shadow-mapSize-height={1024} />
+      <directionalLight position={[5, 8, 5]} intensity={1.2} castShadow />
       <pointLight position={[-3, 3, 3]} intensity={0.5} color="#c9a84c" />
       <pointLight position={[3, -2, 2]} intensity={0.3} color="#4a7cc9" />
 
