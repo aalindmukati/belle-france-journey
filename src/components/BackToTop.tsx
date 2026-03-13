@@ -13,6 +13,7 @@ const BackToTop = () => {
   return (
     <button
       className={`back-to-top ${visible ? "visible" : ""}`}
+      style={{ bottom: "5.5rem" }}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Back to top"
     >
