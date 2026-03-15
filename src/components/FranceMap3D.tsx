@@ -21,6 +21,21 @@ const BRITTANY: [number, number][] = [
   [-1.2, 0.9], [-1.6, 0.7], [-2.0, 0.8], [-2.3, 1.0], [-2.2, 1.4],
 ];
 
+const NORMANDY: [number, number][] = [
+  [-1.0, 2.2], [-0.5, 2.5], [0.0, 2.5], [0.3, 2.3], [0.2, 2.0],
+  [-0.2, 1.8], [-0.6, 1.7], [-1.0, 1.9], [-1.0, 2.2],
+];
+
+const LOIRE_VALLEY: [number, number][] = [
+  [-0.8, 1.2], [-0.3, 1.4], [0.3, 1.3], [0.8, 1.1], [0.7, 0.6],
+  [0.2, 0.4], [-0.4, 0.5], [-0.8, 0.8], [-0.8, 1.2],
+];
+
+const ALSACE: [number, number][] = [
+  [1.8, 2.8], [2.2, 2.9], [2.5, 2.6], [2.6, 2.2], [2.4, 1.8],
+  [2.0, 1.7], [1.7, 2.0], [1.6, 2.4], [1.8, 2.8],
+];
+
 // Full France outline
 const FRANCE_OUTLINE: [number, number][] = [
   [-1.2, 2.8], [-0.4, 3.1], [0.5, 3.2], [1.0, 3.1], [1.6, 3.3],
@@ -76,6 +91,39 @@ const REGIONS: RegionData[] = [
     description: "A rugged Celtic peninsula with dramatic coastlines, ancient standing stones, and a fiercely independent cultural identity. Famous for its crêpes and cider.",
     capital: "Rennes",
     highlights: ["Mont Saint-Michel", "Saint-Malo", "Carnac Stones"],
+  },
+  {
+    name: "Normandy",
+    frenchName: "Normandie",
+    markerPos: [-0.4, 2.1, 0.55] as [number, number, number],
+    color: "#4a9e4a",
+    highlightColor: "#5cb85c",
+    outline: NORMANDY,
+    description: "A region of profound historical significance and breathtaking natural beauty. From the D-Day beaches to the dramatic Étretat cliffs, Normandy blends solemn history with stunning landscapes.",
+    capital: "Rouen",
+    highlights: ["D-Day Beaches", "Étretat Cliffs", "Rouen Cathedral"],
+  },
+  {
+    name: "Loire Valley",
+    frenchName: "Vallée de la Loire",
+    markerPos: [0.0, 0.9, 0.55] as [number, number, number],
+    color: "#9b59b6",
+    highlightColor: "#b07cc6",
+    outline: LOIRE_VALLEY,
+    description: "The 'Garden of France' is a UNESCO World Heritage region famous for its extraordinary Renaissance châteaux, elegant gardens, and prestigious vineyards along the Loire River.",
+    capital: "Tours",
+    highlights: ["Château de Chambord", "Chenonceau", "Loire Vineyards"],
+  },
+  {
+    name: "Alsace",
+    frenchName: "Alsace",
+    markerPos: [2.1, 2.3, 0.55] as [number, number, number],
+    color: "#e67e22",
+    highlightColor: "#f39c12",
+    outline: ALSACE,
+    description: "A fairy-tale region of colorful half-timbered houses, famous Christmas markets, and aromatic white wines. Its Franco-German heritage creates a uniquely charming culture.",
+    capital: "Strasbourg",
+    highlights: ["Strasbourg Cathedral", "Wine Route", "Haut-Kœnigsbourg"],
   },
 ];
 
