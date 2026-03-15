@@ -1,73 +1,176 @@
-# Welcome to your Lovable project
+# ⚜️ La Belle France 
 
-## Project info
+URL:-https://belle-france-journey.vercel.app
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+> A luxury French culture and language school project — built as a React single-page application showcasing France's regions, landmarks, cuisine, and cultural heritage.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 📖 About the Project
 
-**Use Lovable**
+**La Belle France** is a school French language project website designed to showcase France's rich culture, history, iconic landmarks, and regional diversity. All content is written in English and intended for educational purposes.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+The project integrates French language learning, cultural research, and web development into a single cohesive experience — reinforcing vocabulary, grammar, and written expression through authentic, real-world content.
 
-Changes made via Lovable will be committed automatically to this repo.
+> *"This project allowed us to integrate linguistic, cultural, and technical competencies into a single meaningful and practical learning experience."*
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## ✨ Features
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Pages
+| Route | Description |
+|-------|-------------|
+| `/` | Home — Ken Burns hero, facts ticker, featured region cards, interactive SVG map, photo gallery with lightbox |
+| `/regions` | 6 regions (Île-de-France, Provence, Brittany, Normandy, Loire Valley, Alsace) with descriptions, fun facts, and attraction cards |
+| `/map` | Interactive 3D extruded map of France (React Three Fiber) with clickable region markers and info panels |
+| `/cuisine` | 6 French dishes with category filters, pronunciation tooltips, and 3 wine region cards |
+| `/landmarks` | 6 landmark cards + historical timeline (1163–1889) |
+| `/about` | Learning outcomes, animated skill bars, project journey, and French vocabulary glossary (12 terms) |
 
-Follow these steps:
+### Global Features
+- 🗺️ **Interactive SVG Map** — hover and click regions on desktop; styled buttons on mobile
+- 🤖 **Pierre — AI Chatbot** — Gemini-powered French culture guide with streaming markdown responses and suggestion chips
+- 📜 **Scroll Effects** — progress bar, scroll-reveal fade-in animations, back-to-top button
+- 🎨 **Ken Burns Hero** — slow zoom parallax effect on the home page hero image
+- 🔵⚪🔴 **Tricolor Stripe** — fixed blue-white-red decorative bar at the top of every page
+- 📸 **Photo Gallery** — 9-image masonry grid with lightbox (keyboard, swipe, and mouse navigation)
+- 📰 **Facts Ticker** — auto-scrolling navy ticker with fun facts about France
+- 🏛️ **3D France Map** — extruded interactive 3D map with region markers and auto-rotation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🛠️ Tech Stack
 
-# Step 3: Install the necessary dependencies.
-npm i
+| Category | Technology |
+|----------|------------|
+| Framework | React 18 + TypeScript |
+| Bundler | Vite |
+| Styling | Tailwind CSS + shadcn/ui |
+| 3D Graphics | React Three Fiber + @react-three/drei |
+| Routing | React Router DOM v6 |
+| State Management | Zustand |
+| Markdown | react-markdown |
+| Backend | Lovable Cloud (Supabase) |
+| AI | Google Gemini 3 Flash via Edge Function |
+| Carousel | embla-carousel |
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+---
+
+## 🗂️ Project Structure
+
+```
+la-belle-france/
+├── public/
+├── src/
+│   ├── assets/              # ~23 images (landmarks, regions, food, wine)
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── Layout.tsx
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── TricolorStripe.tsx
+│   │   │   └── ScrollProgressBar.tsx
+│   │   ├── ui/              # shadcn/ui components
+│   │   ├── BackToTop.tsx
+│   │   ├── FactsTicker.tsx
+│   │   ├── FranceMapSVG.tsx
+│   │   ├── FranceMap3D.tsx
+│   │   ├── LandmarkTimeline.tsx
+│   │   ├── PageHeader.tsx
+│   │   ├── PhotoGallery.tsx
+│   │   ├── PierreChatbot.tsx
+│   │   ├── PronunciationTooltip.tsx
+│   │   ├── ScrollReveal.tsx
+│   │   └── TricolorDivider.tsx
+│   ├── pages/
+│   │   ├── Index.tsx        # Home page
+│   │   ├── Regions.tsx
+│   │   ├── Map.tsx
+│   │   ├── Cuisine.tsx
+│   │   ├── Landmarks.tsx
+│   │   ├── About.tsx
+│   │   └── NotFound.tsx
+│   ├── App.tsx
+│   └── main.tsx
+├── supabase/
+│   └── functions/
+│       └── pierre-chat/     # AI chatbot edge function
+│           └── index.ts
+├── package.json
+├── tailwind.config.ts
+├── tsconfig.json
+└── vite.config.ts
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/la-belle-france.git
+
+# Navigate into the project
+cd la-belle-france
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🤖 Pierre — AI Chatbot
 
-**Use GitHub Codespaces**
+Pierre is a friendly AI-powered French culture guide built into the website.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **Powered by**: Google Gemini 3 Flash via a Supabase Edge Function
+- **Personality**: Knowledgeable, warm, and slightly charming — like a well-traveled French tour guide
+- **Responses**: Streaming markdown, capped at ~4 sentences per reply, constrained to France-related topics
+- **Features**: 4 suggestion chips, typing indicator, session conversation history, error handling
+- **UI**: Glassmorphic chat window (380×520px on desktop, fullscreen on mobile), floating ⚜️ trigger button with pulse animation
 
-## What technologies are used for this project?
+### Edge Function Setup
 
-This project is built with:
+The chatbot runs via a Supabase Edge Function (`supabase/functions/pierre-chat/index.ts`), deployed automatically through Lovable Cloud.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## 📚 Content Coverage
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+| Category | Items |
+|----------|-------|
+| Regions | Île-de-France, Provence, Brittany, Normandy, Loire Valley, Alsace |
+| Landmarks | Eiffel Tower, Notre-Dame, Mont Saint-Michel, Versailles, The Louvre, Arc de Triomphe |
+| Dishes | Croissant, Bouillabaisse, Crêpes Bretonnes, Ratatouille, Coq au Vin, Crème Brûlée |
+| Wine Regions | Bordeaux, Burgundy, Champagne |
+| Timeline Events | 6 events from 1163 to 1889 |
+| Vocabulary Terms | 12 French words with English translations and context |
+| Gallery Photos | 9 images with lightbox |
+| Fun Facts | 6 rotating ticker facts |
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## 📝 Learning Outcomes
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+This project was built to meet the following educational outcomes:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+1. **🇫🇷 French Language Skills** — Researching and writing about French culture reinforced vocabulary, grammar, and written expression in authentic contexts.
+2. **🏛️ Cultural Knowledge** — Exploring France's history, landmarks, cuisine, and regional diversity deepened appreciation of Francophone culture.
+3. **💻 Digital Literacy** — Collaboratively designing and building this website developed research, information synthesis, and technology skills.
+
+---
+
+## 📄 License
+
+This project was created for educational purposes as part of a school French language and culture assignment. All written content is original. Images are sourced from [Unsplash](https://unsplash.com) under their free-to-use license.
