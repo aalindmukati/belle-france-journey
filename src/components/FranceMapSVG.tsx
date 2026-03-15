@@ -27,6 +27,30 @@ const regions = [
     cx: 120,
     cy: 183,
   },
+  {
+    id: "normandy",
+    name: "Normandy",
+    fact: "Site of the historic D-Day landings in 1944",
+    path: "M 140,130 L 180,115 L 220,125 L 230,150 L 210,165 L 170,170 L 140,155 Z",
+    cx: 185,
+    cy: 145,
+  },
+  {
+    id: "loire-valley",
+    name: "Loire Valley",
+    fact: "Home to over 300 Renaissance châteaux",
+    path: "M 160,220 L 200,210 L 240,215 L 250,240 L 230,260 L 190,265 L 160,250 Z",
+    cx: 205,
+    cy: 238,
+  },
+  {
+    id: "alsace",
+    name: "Alsace",
+    fact: "France's oldest wine route since 1953",
+    path: "M 320,140 L 345,130 L 365,145 L 365,180 L 345,195 L 320,180 Z",
+    cx: 343,
+    cy: 162,
+  },
 ];
 
 const FranceMapSVG = () => {

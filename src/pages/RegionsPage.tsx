@@ -102,6 +102,60 @@ const regions: Region[] = [
       { name: "Carnac Standing Stones", image: carnacImg, description: "One of the world's most remarkable prehistoric sites, featuring thousands of ancient standing stones arranged in long rows dating back over 6,000 years.", badge: "Must Visit" },
     ],
   },
+  {
+    id: "normandy",
+    name: "Normandy",
+    frenchName: "Normandie",
+    bannerImage: normandyImg,
+    paragraphs: [
+      "Normandy is a region of profound historical significance and breathtaking natural beauty on France's northern coast. Its dramatic white chalk cliffs, rolling green bocage countryside, and picturesque harbors have inspired artists and writers for centuries.",
+      "The region played a pivotal role in world history as the site of the D-Day landings on June 6, 1944, when Allied forces stormed the beaches to begin the liberation of Western Europe. Today, the landing beaches, cemeteries, and museums serve as powerful memorials to the sacrifices made.",
+      "Normandy is also celebrated for its culinary heritage — Camembert cheese, rich cream sauces, apple cider, and Calvados brandy are all products of this lush, agricultural region. The coastal towns yield some of the finest seafood in France.",
+      "From the soaring Gothic spires of Rouen Cathedral, famously painted by Claude Monet, to the ethereal beauty of the Étretat cliffs, Normandy offers an unforgettable blend of history, culture, and natural splendor."
+    ],
+    didYouKnow: "Claude Monet painted over 30 canvases of the Rouen Cathedral facade, capturing it at different times of day and in various weather conditions.",
+    attractions: [
+      { name: "D-Day Landing Beaches", image: ddayImg, description: "The five beaches — Utah, Omaha, Gold, Juno, and Sword — where Allied troops landed on June 6, 1944. Memorials and museums tell the story of this historic day.", badge: "Historic Site" },
+      { name: "Étretat Cliffs", image: etretatImg, description: "Spectacular natural chalk arches and needle-like formations rising from the sea, immortalized by Impressionist painters and Guy de Maupassant's writings.", badge: "Must Visit" },
+      { name: "Rouen Cathedral", image: rouenImg, description: "A masterpiece of Gothic architecture that inspired Monet's famous series of paintings. Its ornate facade and soaring spire dominate the medieval city center.", badge: "UNESCO Site" },
+    ],
+  },
+  {
+    id: "loire-valley",
+    name: "Loire Valley",
+    frenchName: "Vallée de la Loire",
+    bannerImage: loireImg,
+    paragraphs: [
+      "The Loire Valley, often called the 'Garden of France,' stretches along the majestic Loire River through the heart of the country. This UNESCO World Heritage region is renowned for its extraordinary concentration of Renaissance châteaux, elegant gardens, and prestigious vineyards.",
+      "During the 15th and 16th centuries, French kings and nobles built magnificent castles along the Loire, transforming the valley into a showcase of architectural ambition and artistic patronage. Today, over 300 châteaux dot the landscape, ranging from intimate manor houses to colossal royal palaces.",
+      "The region's mild climate and fertile soils produce exceptional wines, particularly the crisp white Sancerre and Vouvray, as well as the light, elegant reds of Chinon and Bourgueil. The Loire Valley wine route is one of France's most scenic.",
+      "Beyond the châteaux and vineyards, the valley offers charming towns like Amboise, Tours, and Blois, each with their own medieval quarters, bustling markets, and rich cultural traditions."
+    ],
+    didYouKnow: "Leonardo da Vinci spent the last three years of his life at the Château du Clos Lucé in Amboise, at the invitation of King Francis I.",
+    attractions: [
+      { name: "Château de Chambord", image: chambordImg, description: "The largest and most recognizable château in the Loire Valley, with 440 rooms, 365 fireplaces, and a famous double-helix staircase attributed to Leonardo da Vinci.", badge: "UNESCO Site" },
+      { name: "Château de Chenonceau", image: chenonceauImg, description: "Known as the 'Ladies' Castle,' this elegant château gracefully spans the River Cher with its iconic arched gallery, surrounded by formal gardens.", badge: "Most Visited" },
+      { name: "Loire Valley Vineyards", image: loireVineyardsImg, description: "Rolling vineyards producing world-class wines along 800 km of the Loire River, with picturesque wine villages and centuries-old cellars carved into tuffeau limestone.", badge: "Hidden Gem" },
+    ],
+  },
+  {
+    id: "alsace",
+    name: "Alsace",
+    frenchName: "Alsace",
+    bannerImage: alsaceImg,
+    paragraphs: [
+      "Alsace is a captivating region in northeastern France, nestled between the Vosges mountains and the Rhine River on the German border. Its unique Franco-German cultural heritage is visible everywhere — from the half-timbered houses and flower-laden balconies to the distinctive cuisine that blends French finesse with Germanic heartiness.",
+      "The region's charming villages, such as Colmar, Riquewihr, and Eguisheim, look like they've been lifted from a fairy tale, with their colorful facades, cobblestone streets, and canals. Colmar's 'Petite Venise' quarter is one of the most photographed spots in all of France.",
+      "Alsace is renowned for its wines, particularly aromatic white varieties like Riesling, Gewürztraminer, and Pinot Gris. The Alsace Wine Route, stretching 170 km through vine-covered hills, is the oldest wine route in France, dating back to 1953.",
+      "The region comes alive during Christmas, when its famous Marchés de Noël (Christmas markets) transform town squares into magical wonderlands of twinkling lights, mulled wine, and gingerbread — a tradition dating back to 1570 in Strasbourg."
+    ],
+    didYouKnow: "Strasbourg hosts the oldest Christmas market in France, the Christkindelsmärik, which has been held annually since 1570.",
+    attractions: [
+      { name: "Strasbourg Cathedral", image: strasbourgImg, description: "A Gothic masterpiece built from distinctive pink Vosges sandstone, featuring a 142-meter spire and an astronomical clock dating from the Renaissance.", badge: "UNESCO Site" },
+      { name: "Alsace Wine Route", image: alsaceWineImg, description: "A 170 km scenic drive through rolling vineyards, medieval villages, and hilltop castles — France's oldest and most beloved wine route.", badge: "Must Visit" },
+      { name: "Haut-Kœnigsbourg Castle", image: hautKoenigsbourgImg, description: "A stunning medieval hilltop fortress overlooking the Alsatian plain, meticulously restored in the early 20th century to its former medieval glory.", badge: "Hidden Gem" },
+    ],
+  },
 ];
 
 const RegionsPage = () => {
