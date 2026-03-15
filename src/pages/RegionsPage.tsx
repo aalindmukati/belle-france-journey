@@ -17,6 +17,18 @@ import calanquesImg from "@/assets/calanques.jpg";
 import montImg from "@/assets/mont-saint-michel.jpg";
 import saintMaloImg from "@/assets/saint-malo.jpg";
 import carnacImg from "@/assets/carnac-stones.jpg";
+import normandyImg from "@/assets/normandy-coast.jpg";
+import ddayImg from "@/assets/dday-beaches.jpg";
+import etretatImg from "@/assets/etretat-cliffs.jpg";
+import rouenImg from "@/assets/rouen-cathedral.jpg";
+import loireImg from "@/assets/loire-valley.jpg";
+import chambordImg from "@/assets/chambord.jpg";
+import chenonceauImg from "@/assets/chenonceau.jpg";
+import loireVineyardsImg from "@/assets/loire-vineyards.jpg";
+import alsaceImg from "@/assets/alsace-colmar.jpg";
+import strasbourgImg from "@/assets/strasbourg-cathedral.jpg";
+import alsaceWineImg from "@/assets/alsace-wine-route.jpg";
+import hautKoenigsbourgImg from "@/assets/haut-koenigsbourg.jpg";
 
 interface Attraction {
   name: string;
