@@ -4,7 +4,7 @@ URL:-https://belle-france-journey.vercel.app
 
 > A luxury French culture and language school project — built as a React single-page application showcasing France's regions, landmarks, cuisine, and cultural heritage.
 
----
+----
 
 ## 📖 About the Project
 
